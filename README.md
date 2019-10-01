@@ -8,6 +8,9 @@
  [Link]: https://www.xilinx.com/member/forms/download/ultra96-image-license-xef.html?filename=xilinx-ultra96-desktop-stretch-2018-12-10.img.zip
  Then flash the downloaded OS image to the SDCard by using [etcher](https://etcher.io/) as below:
  Install etcher, open it and select the image OS, insert the SD card into the slot on your computer. Click the Flash button and wait till the process is done.
+ 
+ ![prepare boot by etcher](image/etch.png)
+ 
  Copy the sample from DNNDK tool folder (above install): (*path*/xilinx_dnndk_v2.08/Ultra96/)  to SDcard root folder (/media/user/ROOTFS/root/), be noted that this step also could be done by using wifi and ```bash scp``` command after the board is boot (incase your wifi connection is fast enough)
 - Now we are going to boot the Ultra96 board with this SDCard
   Insert the SDCard into board and connect the UART interface to the host PC and other peripherals as required. Turn on the power, and wait for the system to boot.
@@ -18,17 +21,24 @@
     * *stop bit*: 1
     * *no parity*
   Or you can also access the board as Standalone by connecting keyboard, mouse and monitor (user: root, pwd: root)
+  
+![Standalone desktop](image/desktop.png)
 
 ### step 2: Test examples
+
    - Asume that you access the board as Standalone mode (this will make the board works as it's performance and not effected by the wifi speed)
    Fisrtly, we will test with the available example the we copy to the board before.
      ```bash
-     cd /root/Ultra96/sample
+     cd /root/Ultra96/
+     ./install.sh
+     cd sample
      cd video_analysis
      make
      ./video_analysis video/*.mp4 
         ``` 
         If everything work well, you will see the demo example made by Deephi
+  
+  ![First demo](image/demo1.png)
         
   - Now, we download the ssd-mobilenet-v2 from model zoo and test this model perform on our board
   [link]: https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/master/docs/AI-Model-Zoo
